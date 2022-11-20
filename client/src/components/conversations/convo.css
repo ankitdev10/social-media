@@ -1,0 +1,24 @@
+.convo{
+    display: flex;
+    align-items: center;
+    flex-direction: reverse;
+    padding: 10px;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+.convo:hover{
+    background-color: rgb(244, 237, 237);
+}
+
+.convoImg{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 20px;
+}
+
+.convoName{
+    font-weight: 500;
+}

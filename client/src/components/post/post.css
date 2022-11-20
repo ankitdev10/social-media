@@ -1,0 +1,129 @@
+.post {
+  margin: 30px 0;
+  width: 100%;
+  border-radius: 10px;
+  -webkit-box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, 0.71);
+  box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, 0.71);
+}
+
+.postWrapper {
+  padding: 10px;
+}
+
+.postTop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.postTopLeft {
+  display: flex;
+  align-items: center;
+}
+
+.postProfileImg {
+  height: 32px;
+  width: 32px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.postUsername {
+  font-size: 15px;
+  font-weight: 500;
+  margin: 0 10px;
+}
+
+.postDate {
+  font-size: 12px;
+}
+
+.postCenter {
+  margin: 20px 0;
+}
+
+.postImg {
+  margin-top: 20px;
+  width: 100%;
+  max-height: 500px;
+  object-fit: contain;
+}
+
+.postBottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.postBottomLeft{
+    display: flex;
+    align-items: center;
+}
+
+
+.likeIcon{
+width: 24px;
+height: 24px;
+margin-right: 5px;
+cursor: pointer;
+}
+
+.likeCounter{
+    font-size: 15px;
+}
+
+.postCommentText{
+    font-size: 15px;
+    cursor: pointer;
+    border-bottom: 1px dashed grey ;
+}
+
+
+.postTopRightWrapper{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.deleteConfirmBoxWrapper{
+  margin-top: 10px;
+  padding: 10px;
+  background-color:  rgb(246, 241, 241);
+
+}
+
+.deleteConfirmBoxText{
+  color: #222;
+  font-size: 16px;
+}
+
+.deleteButtons{
+  margin-top: 5px;
+}
+
+
+.deletePost {
+  font-size: 20px !important;
+  color: red;
+  cursor: pointer;
+}
+
+.confirmDelete{
+  background-color: rgba(255, 13, 13, 0.5);
+  margin-right: 4px;
+  border: none;
+  font-size: 14px;
+  padding: 3px 5px;
+  color: white;
+  cursor: pointer;
+}
+
+.cancelDelete{
+  border: none;
+  font-size: 14px;
+  padding: 3px 5px;
+  background-color: rgba(203, 203, 35, 0.8);
+  color: white;
+  cursor: pointer;
+}
+
