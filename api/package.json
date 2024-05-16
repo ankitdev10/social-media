@@ -4,18 +4,28 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon index.js"
+    "dev:server": "nodemon index.js",
+    "dev:socket": "nodemon socket.js",
+    "prod:server": "node index.js",
+    "prod:socket": "node socket.js",
+    "start": "concurrently npm:dev:*",
+    "dev": "concurrently npm:dev:*"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "bcrypt": "^5.1.0",
+    "concurrently": "^8.2.2",
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
     "helmet": "^6.0.0",
     "mongoose": "^6.7.0",
     "morgan": "^1.10.0",
     "multer": "^1.4.5-lts.1",
-    "path": "^0.12.7"
+    "path": "^0.12.7",
+    "socket.io": "^4.7.5"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.0"
   }
 }

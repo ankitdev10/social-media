@@ -1,6 +1,6 @@
 import axios from "axios";
-import { useRef } from "react";
-import { Link } from "react-router-dom";
+import { useRef, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import "./register.css";
 
 export default function Register() {
@@ -8,26 +8,40 @@ export default function Register() {
   const email = useRef();
   const password = useRef();
   const cPassword = useRef();
+  const navigate = useNavigate();
+
+  const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   const handleClick = async (e) => {
+    e.preventDefault();
+    setError(null);
+    setLoading(true);
+
     if (password.current.value !== cPassword.current.value) {
       cPassword.current.setCustomValidity("Passwords don't match");
+      setLoading(false);
+      return;
     } else {
-      const user = {
-        username: username.current.value,
-        email: email.current.value,
-        password: password.current.value,
-      };
-      try {
-        await axios.post("auth/register", user);
-        window.location.replace("/login");
-      } catch (err) {
-        console.log(err);
-      }
+      cPassword.current.setCustomValidity("");
     }
 
-    e.preventDefault();
+    const user = {
+      username: username.current.value,
+      email: email.current.value,
+      password: password.current.value,
+    };
+
+    try {
+      const res = await axios.post("/auth/register", user);
+      navigate("/login");
+    } catch (err) {
+      setError(err.response ? err.response.data : "An error occurred");
+    } finally {
+      setLoading(false);
+    }
   };
+
   return (
     <div className="login">
       <div className="loginWrapper">
@@ -67,9 +81,14 @@ export default function Register() {
               ref={cPassword}
               required
             />
-            <button type="submit" className="loginBtn">
-              Sign Up
+            <button type="submit" className="loginBtn" disabled={loading}>
+              {loading ? "Loading..." : "Sign Up"}
             </button>
+            {error && (
+              <span style={{ color: "red" }} className="errorMessage">
+                {error}
+              </span>
+            )}
           </form>
           <Link to="/login">
             <button className="loginRegisterBtn">Log in instead</button>

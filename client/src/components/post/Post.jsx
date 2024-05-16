@@ -14,7 +14,7 @@ export default function Post({ post }) {
   const [user, setUser] = useState({});
   const PF = process.env.REACT_APP_PUBLIC_FOLDER;
   const { user: currentUser } = useContext(AuthContext);
-
+  console.log(PF);
   const handleDelete = async (e) => {
     console.log(post);
     e.preventDefault();
@@ -60,7 +60,7 @@ export default function Post({ post }) {
               style={{ textDecoration: "none" }}
             >
               <img
-                src={user?.profilePicture || PF + "defaultPP.png"}
+                src={user?.profilePicture || "defaultPP.png"}
                 className="postProfileImg"
                 alt=""
               />

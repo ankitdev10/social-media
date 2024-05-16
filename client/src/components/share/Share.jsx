@@ -1,56 +1,60 @@
 import "./share.css";
-import { PermMedia, Label, Room, EmojiEmotions, Cancel } from "@mui/icons-material";
+import {
+  PermMedia,
+  Label,
+  Room,
+  EmojiEmotions,
+  Cancel,
+} from "@mui/icons-material";
 import { useContext } from "react";
 import { AuthContext } from "../../context/AuthContext";
 import { useRef } from "react";
 import { useState } from "react";
-import axios from "axios"
+import axios from "axios";
 import { Link } from "react-router-dom";
-
 
 export default function Share() {
   const PF = process.env.REACT_APP_PUBLIC_FOLDER;
   const { user } = useContext(AuthContext);
- 
+
   const desc = useRef();
   const [file, setFile] = useState(null);
 
-  const handleSubmit = async(e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const newPost = {
       userId: user._id,
-      desc: desc.current.value
+      desc: desc.current.value,
     };
-    if(file){
-      const data = new FormData()
-      const fileName = file.name
-      data.append("file", file)
-      data.append("name", fileName)
-      newPost.img = fileName
+    if (file) {
+      const data = new FormData();
+      const fileName = file.name;
+      data.append("file", file);
+      data.append("name", fileName);
+      newPost.img = fileName;
       try {
-        await axios.post("/upload", data)
+        await axios.post("/upload", data);
       } catch (error) {
-        console.log(error)
+        console.log(error);
       }
     }
     try {
-      await axios.post("/post", newPost)
-      window.location.reload()
+      await axios.post("/post", newPost);
+      window.location.reload();
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
   };
-  console.log(URL.createObjectURL(file))
   return (
     <div className="share">
       <div className="shareWrapper">
         <div className="shareTop">
-        <Link to={`/profile/${user.username}`} >
-          <img
-            src={user.profilePicture + PF + "/defaultPP.png"}
-            alt=""
-            className="shareProfileImg"
-          />
+          <Link to={`/profile/${user.username}`}>
+            <img
+              src={user.profilePicture + PF + "/defaultPP.png"}
+              alt=""
+              className="shareProfileImg"
+            />
           </Link>
           <input
             type="text"
@@ -63,7 +67,7 @@ export default function Share() {
         {file && (
           <div className="shareImgContainer">
             <img src={URL.createObjectURL(file)} alt="" className="shareImg" />
-            <Cancel className = "shareCancel" onClick = {() => setFile(null) } />
+            <Cancel className="shareCancel" onClick={() => setFile(null)} />
           </div>
         )}
         <form onSubmit={handleSubmit} className="shareBottom">
